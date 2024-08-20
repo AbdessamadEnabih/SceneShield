@@ -1,0 +1,22 @@
+# Dockerfile.ml
+
+# Use the official Python image
+FROM python:3.11-slim
+
+# Set the Current Working Directory inside the container
+WORKDIR /app
+
+# Copy the requirements file into the container
+COPY ml-service/requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the source code into the container
+COPY ml-service/ .
+
+# Expose port 5000 for the ML service
+EXPOSE 5000
+
+# Command to run the Python application
+CMD ["python", "main.py"]
